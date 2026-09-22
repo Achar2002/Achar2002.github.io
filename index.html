@@ -1,667 +1,923 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Sanath Achari | AWS Cloud & DevOps Engineer</title>
-
-    <meta name="description"
-        content="Sanath Achari - AWS Cloud and DevOps Engineer with experience in networking, Linux, CI/CD, Docker and Kubernetes.">
-
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <title>Sanket Arali</title>
+    <link rel="icon" href="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
 
-    <!-- ================= NAVBAR ================= -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a1a1f0a1c6.js" crossorigin="anonymous"></script>
+    <style>
+        /* Dark theme vars */
+        [data-theme="dark"] {
+            --bg-color: #0c0a09;
+            --card-color: #1c1917;
+            --text-color: #fafaf9;
+            --heading-color: #ffffff;
+            --muted-text-color: #a8a29e;
+            --border-color: #292524;
+            --btn-bg: #292524;
+            --btn-border: #44403c;
+            --hover-btn-bg: #44403c;
+            --gradient-1: rgba(59, 130, 246, 0.1);
+            --gradient-2: rgba(236, 72, 153, 0.1);
+            --gradient-3: rgba(16, 185, 129, 0.1);
+            --gradient-4: rgba(251, 191, 36, 0.1);
+            --gradient-5: rgba(139, 92, 246, 0.1);
+        }
 
-    <header class="navbar">
+        /* Light theme vars */
+        [data-theme="light"] {
+            --bg-color: #f7f7f8;
+            --card-color: #ffffff;
+            --text-color: #0c0a09;
+            --heading-color: #0b1220;
+            --muted-text-color: #5b5b5b;
+            --border-color: #e6e6e6;
+            --btn-bg: #f1f5f9;
+            --btn-border: #e2e8f0;
+            --hover-btn-bg: #e2e8f0;
+            --gradient-1: rgba(59, 130, 246, 0.08);
+            --gradient-2: rgba(236, 72, 153, 0.06);
+            --gradient-3: rgba(16, 185, 129, 0.06);
+            --gradient-4: rgba(251, 191, 36, 0.06);
+            --gradient-5: rgba(139, 92, 246, 0.06);
+        }
 
-        <div class="container nav-container">
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-            <a href="#" class="logo">
-                Sanath<span>.</span>
-            </a>
+        .gradient-bg {
+            position: relative;
+            z-index: 1;
+        }
 
-            <nav class="nav-links">
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                                 radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                                 linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                                 linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.2;
+            z-index: -1;
+        }
 
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
 
+        .hero-image-container {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Make components that used explicit white follow the theme */
+        h1, h2, h3, .card h3, .text-white {
+            color: var(--heading-color) !important;
+        }
+        
+        .projects-grid .card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+        }
+
+        .projects-grid .card:hover {
+            transform: perspective(1000px) scale(1.02);
+        }
+
+        .projects-grid .card .parallax-container {
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Constrain project cards to a comfortable width on larger screens and center them in their columns.
+           Keep full-width behaviour on small screens for a responsive layout. */
+        .projects-grid .card {
+            max-width: 480px; /* narrower cards to match reference */
+            width: auto !important;
+            margin: 0 auto !important; /* center inside the grid column */
+            padding: 1rem !important; /* tighten internal padding (p-4 ~= 1rem) */
+        }
+
+        /* On narrow screens allow cards to be full-width to use available space */
+        @media (max-width: 767px) {
+            .projects-grid .card {
+                max-width: none;
+                width: 100% !important;
+                margin: 0 !important;
+            }
+        }
+        
+        .nav-link:hover {
+            transform: scale(1.05);
+        }
+
+        /* Ensure nav link hover color follows theme */
+        .nav-link:hover {
+            color: var(--heading-color) !important;
+        }
+
+        /* Header background should follow theme variables (override utility with opacity suffix) */
+        header {
+            background-color: var(--card-color) !important;
+        }
+
+        /* Ensure anchored sections are visible below the sticky header when navigating via in-page links */
+        section[id] {
+            /* default offset; JS will adjust dynamically on load to match header height */
+            scroll-margin-top: 72px;
+        }
+
+        .btn-magic {
+            border: 1px solid var(--btn-border);
+            background-color: var(--btn-bg);
+            transition: all 0.3s ease;
+        }
+        .btn-magic:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
+            background-color: var(--hover-btn-bg);
+        }
+
+        .hover-glow {
+            transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.05);
+        }
+
+        .card {
+            background-color: var(--card-color) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-color) !important;
+        }
+        /* Ensure every text node inside a card follows the theme color (overrides utility classes like text-white) */
+        .card, .card * {
+            color: var(--text-color) !important;
+        }
+        /* overwrite utility text colors to use theme variables */
+        .text-stone-300 { color: var(--muted-text-color) !important; }
+        .text-stone-400 { color: var(--muted-text-color) !important; }
+        /* background utilities */
+        .bg-stone-950 { background-color: var(--bg-color) !important; }
+        .bg-stone-900 { background-color: var(--card-color) !important; }
+        .border-stone-800 { border-color: var(--border-color) !important; }
+        .bg-stone-800 { background-color: var(--btn-bg) !important; }
+        .border-stone-700 { border-color: var(--btn-border) !important; }
+        /* buttons and small elements */
+        .btn-magic {
+            background-color: var(--btn-bg) !important;
+            border-color: var(--btn-border) !important;
+            color: var(--text-color) !important;
+        }
+        .btn-magic:hover { background-color: var(--hover-btn-bg) !important; }
+        .group-hover\:bg-gradient-to-br {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .group:hover .group-hover\:bg-gradient-to-br {
+            opacity: 1;
+        }
+        #project-1-gradient { background-image: linear-gradient(to bottom right, var(--gradient-1), transparent); }
+        #project-2-gradient { background-image: linear-gradient(to bottom right, var(--gradient-2), transparent); }
+        #project-3-gradient { background-image: linear-gradient(to bottom right, var(--gradient-3), transparent); }
+        #project-4-gradient { background-image: linear-gradient(to bottom right, var(--gradient-4), transparent); }
+        #project-5-gradient { background-image: linear-gradient(to bottom right, var(--gradient-5), transparent); }
+        .bg-blue-400 { background-color: #60a5fa; }
+        /* Footer should follow theme variables */
+        footer {
+            background: linear-gradient(to bottom, var(--bg-color) 0%, var(--card-color) 100%) !important;
+            border-color: var(--border-color) !important;
+            color: var(--muted-text-color) !important;
+        }
+        footer a { color: var(--muted-text-color) !important; }
+        footer a:hover { color: var(--heading-color) !important; }
+        /* Map wrapper for responsive embed */
+        .map-wrapper iframe {
+            width: 100%;
+            height: auto;
+            min-height: 280px;
+            aspect-ratio: 16 / 9;
+            display: block;
+        }
+        /* Make the mobile full-width panel follow the current theme */
+        #mobile-nav {
+            /* Use theme card color for the panel background */
+            background-color: var(--card-color) !important;
+            color: var(--text-color) !important;
+            /* Keep backdrop blur behavior from the utility class */
+            backdrop-filter: blur(6px);
+        }
+        /* Ensure links and buttons inside the mobile nav use themed colors */
+        #mobile-nav a,
+        #mobile-nav button,
+        #mobile-nav .text-stone-200,
+        #mobile-nav .text-stone-300 {
+            color: var(--muted-text-color) !important;
+        }
+        /* Make the close icon visible and follow heading color */
+        #mobile-nav-close {
+            color: var(--heading-color) !important;
+        }
+        /* Center the mobile hamburger and keep theme toggle on the right on small screens */
+        @media (max-width: 767px) {
+            header .container { position: relative; }
+            /* place the mobile hamburger at the left corner (small inset) and vertically center it */
+            #mobile-menu-btn {
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            /* keep the theme toggle at the right side, vertically centered */
+            #theme-toggle { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); }
+        }
+
+        /* Bottom-fixed contact bar uses theme variables so it adapts to light/dark themes */
+        #bottom-contacts {
+            position: fixed;
+            left: 50%;
+            right: auto;
+            bottom: 1rem;
+            transform: translateX(-50%);
+            z-index: 70;
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            padding: 0.45rem 0.6rem;
+            border-radius: 9999px;
+            /* Use theme card color and border so it blends in both themes */
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            transition: transform 200ms ease, opacity 200ms ease, background-color 200ms ease, border-color 200ms ease;
+        }
+
+        /* Larger interactive icons with a smooth hover/focus effect */
+        #bottom-contacts .contact-icon {
+            color: var(--muted-text-color);
+            font-size: 1.45rem; /* larger icon */
+            padding: 0.5rem;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 150ms ease, box-shadow 180ms ease, color 150ms ease, background-color 150ms ease;
+            will-change: transform, box-shadow;
+        }
+
+        /* Hover and focus: pop + glow */
+        #bottom-contacts .contact-icon:hover,
+        #bottom-contacts .contact-icon:focus {
+            transform: translateY(-3px) scale(1.08);
+            color: var(--heading-color);
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            box-shadow: 0 6px 18px rgba(96,165,250,0.12), 0 2px 6px rgba(0,0,0,0.18);
+            outline: none;
+        }
+
+        /* Keyboard focus visible outline for accessibility */
+        #bottom-contacts .contact-icon:focus-visible {
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.14), 0 6px 18px rgba(96,165,250,0.08);
+        }
+
+        /* Slightly larger gap and vertical padding on taller screens */
+        @media (min-width: 1024px) {
+            #bottom-contacts { gap: 0.75rem; padding: 0.5rem 0.8rem; }
+            #bottom-contacts .contact-icon { font-size: 1.6rem; padding: 0.6rem; }
+        }
+
+        /* On very small screens keep centered and ensure it doesn't cover inputs */
+        @media (max-width: 420px) {
+            #bottom-contacts { bottom: 0.7rem; transform: translateX(-50%); }
+            #bottom-contacts .contact-icon { font-size: 1.35rem; padding: 0.45rem; }
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+
+    <!-- Navbar -->
+    <header class="py-6 sticky top-0 z-50 bg-stone-950/80 backdrop-blur-md transition-colors">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold"></a>
+            <nav id="main-nav" class="hidden md:flex items-center space-x-6">
+                
+                <a href="#experience" class="nav-link text-sm text-stone-300 hover:text-white transition">Experience</a>
+                <a href="#education" class="nav-link text-sm text-stone-300 hover:text-white transition">Education</a>
+                <a href="#projects" class="nav-link text-sm text-stone-300 hover:text-white transition">Projects</a>
+                <a href="#skills" class="nav-link text-sm text-stone-300 hover:text-white transition">Skills</a>
+                <a href="#contact" class="nav-link text-sm text-stone-300 hover:text-white transition">Contact</a>
+                <a id="download-resume-desktop" href="https://drive.google.com/file/d/1bCV99UIKK4EzfxPuKj-ApJr1HFuk9row/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="nav-link text-sm text-stone-300 hover:text-white transition btn-magic px-3 py-2 rounded" aria-label="Download resume (desktop)">Resume</a>
             </nav>
-
+            <button id="mobile-menu-btn" class="md:hidden text-stone-300" aria-label="Open mobile menu" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+            <!-- Theme toggle -->
+            <button id="theme-toggle" class="ml-4 text-stone-300 inline-flex items-center px-3 py-2 rounded-md" aria-label="Toggle theme">
+                <i id="theme-icon" class="fas fa-moon"></i>
+            </button>
+            <!-- Mobile full-width panel nav (hidden on desktop) -->
+            <nav id="mobile-nav" class="md:hidden fixed top-0 left-0 right-0 transform -translate-y-full transition-transform duration-300 bg-stone-900/95 backdrop-blur-sm z-50">
+                <div class="px-4 py-4 flex items-center justify-between border-b border-stone-800">
+                    <div class="text-lg font-semibold text-stone-200">Menu</div>
+                    <button id="mobile-nav-close" class="text-stone-200 text-2xl" aria-label="Close menu">&times;</button>
+                </div>
+                <div class="px-4 py-6 space-y-2">
+                    
+                    <a href="#experience" class="block px-3 py-2 text-sm text-stone-300 hover:text-white">Experience</a>
+                    <a href="#education" class="block px-3 py-2 text-sm text-stone-300 hover:text-white">Education</a>
+                    <a href="#projects" class="block px-3 py-2 text-sm text-stone-300 hover:text-white">Projects</a>
+                    <a href="#skills" class="block px-3 py-2 text-sm text-stone-300 hover:text-white">Skills</a>
+                    <a href="#contact" class="block px-3 py-2 text-sm text-stone-300 hover:text-white">Contact</a>
+                    <a id="download-resume-mobile" href="https://drive.google.com/file/d/1bCV99UIKK4EzfxPuKj-ApJr1HFuk9row/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="block px-3 py-2 text-sm text-stone-300 hover:text-white btn-magic rounded" aria-label="Download resume (mobile)">Resume</a>
+                </div>
+            </nav>
         </div>
-
     </header>
 
+    <main class="container mx-auto px-4">
+    <!-- Hero Section (reduced height/padding to remove large gap) -->
+    <section id="hero" class="min-h-[60vh] flex items-center justify-center text-center py-8 md:py-12">
+   <div class="max-w-4xl w-full">
+  <div class="hero-image-container mb-6">
+        <img
+            src="https://raw.githubusercontent.com/Sanketarali/Demo-Repo/main/sanket_profile-pic.png"
+            alt="Profile Picture"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='./assets/profile-fallback.svg'"
+            class="rounded-full w-40 h-40 mx-auto mb-3 object-cover"
+        />
 
-    <!-- ================= HERO ================= -->
+  </div>
+  <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-3">
+    Hi, I'm <span class="text-blue-400">Sanket</span>
+  </h1>
+  <p class="text-sm md:text-lg text-stone-400 max-w-2xl mx-auto mb-6">
+    I'm a DevOps Engineer passionate about automating workflows, deploying scalable applications, and optimizing cloud infrastructure for performance and reliability.
+  </p>
+  <div class="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4">
+    <a href="#footer" class="btn-magic text-sm px-6 py-3 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700 transition inline-block" aria-label="Go to footer">
+      Get in Touch
+    </a>
+    <a href="#projects" class="btn-magic text-sm px-6 py-3 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700 transition inline-block" aria-label="Explore Projects">
+      Explore Projects
+    </a>
+  </div>
+</div>
 
-    <main>
+</section>
 
-        <section class="hero">
 
-            <div class="container hero-container">
+<!-- Experience Section -->
+<section id="experience" class="py-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Experience</h2>
+    <div class="max-w-3xl mx-auto space-y-8">
+        <!-- DevOps Intern -->
+        <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover:hover-glow transition-all">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center space-x-4">
+                    <img src="data:image/png;base64,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" alt="Radware Logo" class="w-12 h-12 object-contain rounded-full">
+                    <h3 class="text-xl font-semibold">Radware</h3>
+                </div>
+                <span class="text-sm text-stone-400">Feb 2025 - Aug 2025</span>
+            </div>
+            <p class="text-sm text-stone-300 mb-4">DevOps Engineer Intern</p>
+          <ul class="list-disc list-inside text-sm text-stone-400 space-y-2 pl-5">
+  <style>
+    ul.custom-list li {
+      text-indent: -0em;
+      padding-left: 1.5em;
+    }
+  </style>
 
-                <div class="hero-content">
+  <ul class="custom-list list-disc text-sm text-stone-400 space-y-2">
+    <li>Built and automated CI/CD pipelines using Jenkins and ArgoCD, improving deployment efficiency and reliability through automated testing and delivery processes.</li>
+    <li>Containerized legacy applications using Docker and deployed them on Kubernetes clusters, achieving 99.9% application availability.</li>
+    <li>Implemented infrastructure as code using Terraform and Ansible, managing AWS resources including EC2, EKS.</li>
+    <li>Set up comprehensive monitoring solutions using Prometheus and Grafana, creating customized dashboards for real-time system metrics and alerts.</li>
+    <li>Automated security scanning using SonarQube and Trivy, identifying and resolving critical vulnerabilities in the deployment pipeline.</li>
+    <li>Collaborated with development teams to optimize Git workflows and implement branching strategies for better version control.</li>
+  </ul>
+</ul>
 
-                    <p class="small-text">
-                        Hello, I'm
-                    </p>
+        </div>
+    </div>
+</section>
 
-                    <h1>
-                        Sanath Achari
-                    </h1>
 
-                    <h2>
-                        AWS Cloud & DevOps Engineer
-                    </h2>
+        <!-- Education Section -->
+        <section id="education" class="py-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Education</h2>
+    <div class="max-w-3xl mx-auto space-y-8">
+        <!-- College 1 -->
+        <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover:hover-glow transition-all">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center space-x-4">
+                    <!-- College Logo -->
+                    <img src="data:image/jpeg;base64,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" alt="SDM Institute of Technology Logo" class="w-12 h-12 object-contain rounded-full">
+                    <h3 class="text-xl font-semibold">Bachelor of Engineering (CSE)</h3>
+                </div>
+                <span class="text-sm text-stone-400 whitespace-nowrap">2020 - 2024</span>
+            </div>
+            <p class="text-sm text-stone-300 mb-4">SDM Institute of Technology</p>
+            <ul class="list-disc list-outside text-sm text-stone-400 space-y-2 pl-5">
+                <li>Graduated in Computer Science and Engineering.</li>
+            </ul>
+        </div>
+        
+        <!-- College 2 -->
+        <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover:hover-glow transition-all">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center space-x-4">
+                    <!-- College Logo -->
+                    <img src="data:image/png;base64,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" alt="Alva's Education Foundation Logo" class="w-12 h-12 object-contain rounded-full">
+                    <h3 class="text-xl font-semibold">PCMB</h3>
+                </div>
+                <span class="text-sm text-stone-400">2018 - 2020</span>
+            </div>
+            <p class="text-sm text-stone-300 mb-4">Alva's Education Foundation</p>
+            <ul class="list-disc list-outside text-sm text-stone-400 space-y-2 pl-5">
+                <li>Completed higher secondary education in PCMB.</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-                    <p class="hero-text">
-                        Electronics Engineer with a background in networking
-                        and Linux, currently focused on AWS Cloud, DevOps,
-                        automation and cloud infrastructure.
-                    </p>
 
-                    <div class="buttons">
+         <!-- Projects Section -->
+            <section id="projects" class="py-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Projects</h2>
+                <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-6 gap-x-4 max-w-3xl mx-auto px-4">
 
-                        <a href="#projects" class="btn primary">
-                            View Projects
+<!-- Project Card 1 -->
+               <div class="group card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover-glow transition-all relative overflow-hidden">
+                    <div id="project-5-gradient" class="absolute inset-0 group-hover:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <!-- Placeholder image for the project -->
+                        <div class="mb-4">
+                            <img src="https://raw.githubusercontent.com/LondheShubham153/k8s-kind-voting-app/main/grafana.png" alt="Grafana dashboard screenshot" loading="lazy" class="w-full object-contain rounded-lg">
+                        </div>
+                        <!-- icon removed as requested -->
+                        <h3 class="text-lg font-semibold text-white mb-2">Monitoring and Alerting Solution</h3>
+                        <p class="text-stone-400 text-sm mb-4">Developed and implemented a complete monitoring and alerting solution using Prometheus, Grafana, and Kubernetes to enhance system reliability and performance visibility. This project focuses on collecting, visualizing, and alerting metrics from containerized applications running on Docker and Kubernetes clusters.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Prometheus</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Grafana</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Kubernetes</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Docker</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Linux</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">YAML</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Mimir</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Loki</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Observability</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+
+
+
+                  <div class="group card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover-glow transition-all relative overflow-hidden">
+                    <div id="project-5-gradient" class="absolute inset-0 group-hover:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <!-- Placeholder image for the project -->
+                        <div class="mb-10">
+                            <img src="https://github.com/Sanketarali/Demo-Repo/blob/main/Screenshot%202025-11-01%20233614.png?raw=true" alt="CI/CD Pipeline screenshot" loading="lazy" class="w-full object-contain rounded-lg">
+                        </div>
+                        <!-- icon removed as requested -->
+                        <h3 class="text-lg font-semibold text-white mb-2">End-to-End CI/CD Pipeline with DevSecOps Implementation</h3>
+                        <p class="text-stone-400 text-sm mb-4">Designed and implemented a complete CI/CD pipeline integrating Jenkins, GitHub, SonarQube, Docker, Kubernetes, and Prometheus-Grafana to achieve automated, secure, and reliable software delivery. This project focuses on continuous integration, automated builds, code quality analysis, vulnerability scanning, and continuous deployment to Kubernetes clusters.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Jenkins</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">GitHub</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">SonarQube</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">OWASP Dependency-Check</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Docker</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Kubernetes</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Trivy</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Terraform</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Prometheus</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Grafana</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                
+                <!-- Project Card 3 -->
+                <!-- Project Card 4 -->
+                  <div class="group card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover-glow transition-all relative overflow-hidden">
+                    <div id="project-5-gradient" class="absolute inset-0 group-hover:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <div class="mb-4">
+                            <img src="https://raw.githubusercontent.com/Sanketarali/Demo-Repo/refs/heads/main/kubegreen.png" alt="Kubernetes Cost Optimization project screenshot" class="w-full object-contain rounded-lg">
+                        </div>
+                        <!-- icon removed as requested -->
+                        <h3 class="text-lg font-semibold text-white mb-2">Kubernetes Cost Optimization using KubeGreen, Prometheus & Grafana</h3>
+                        <p class="text-stone-400 text-sm mb-4">Implemented KubeGreen to automate shutdown and wake-up of non-critical Kubernetes workloads during non-peak hours, optimizing cluster utilization and reducing cloud costs. The project integrates KubeGreen with Cluster Autoscaler, Prometheus, and Grafana for intelligent scheduling, dynamic scaling, and real-time performance monitoring.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Kubernetes</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">KubeGreen</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Prometheus</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Grafana</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Cluster Autoscaler</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">YAML</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Linux</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">DevOps</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">FinOps</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 4 -->
+               <div class="group card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover-glow transition-all relative overflow-hidden">
+                    <div id="project-5-gradient" class="absolute inset-0 group-hover:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <div class="mb-9">
+                            <img src="https://raw.githubusercontent.com/Sanketarali/Demo-Repo/refs/heads/main/blue.jpg" alt="CI/CD Pipeline Automation project screenshot" class="w-full object-contain rounded-lg">
+                        </div>
+                        <!-- icon removed as requested -->
+                        <h3 class="text-lg font-semibold text-white mb-2">CI/CD Pipeline Automation with Jenkins, ArgoCD & Kubernetes</h3>
+                        <p class="text-stone-400 text-sm mb-4">Designed and implemented a fully automated Continuous Integration and Continuous Deployment (CI/CD) pipeline to streamline the software delivery process using Jenkins, Git, ArgoCD, SonarQube, and Kubernetes. The project focused on integrating build automation, code quality checks, security scans, artifact management, and real-time monitoring to achieve faster, secure, and reliable deployments.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Jenkins</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Git</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">GitLab</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">ArgoCD</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Kubernetes</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Docker</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">SonarQube</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">OWASP Dependency-Check</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Nexus3</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Prometheus</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Grafana</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">JIRA</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">YAML</span>
+                            <span class="px-2 py-1 bg-stone-800 text-stone-300 rounded text-xs">Linux</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">My Skills</h2>
+            <div class="flex justify-center flex-wrap gap-4 max-w-5xl mx-auto">
+                <!-- Badges using shields.io (logo where available) -->
+                <img src="https://img.shields.io/badge/DevOps-0A66C2?style=for-the-badge&logo=azuredevops&logoColor=white" alt="DevOps" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/CI--CD-1F2937?style=for-the-badge&logo=githubactions&logoColor=white" alt="CI/CD" class="h-10 rounded-md" />
+
+                <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" alt="Kubernetes" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Helm-0F172A?style=for-the-badge&logo=helm&logoColor=white" alt="Helm" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/ArgoCD-2D3748?style=for-the-badge&logo=argocd&logoColor=white" alt="ArgoCD" class="h-10 rounded-md" />
+
+                <img src="https://img.shields.io/badge/Terraform-623CE4?style=for-the-badge&logo=terraform&logoColor=white" alt="Terraform" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Ansible-EE0000?style=for-the-badge&logo=ansible&logoColor=white" alt="Ansible" class="h-10 rounded-md" />
+
+                <img src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white" alt="Jenkins" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Bitbucket-0052CC?style=for-the-badge&logo=bitbucket&logoColor=white" alt="Bitbucket" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven" class="h-10 rounded-md" />
+
+                <img src="https://img.shields.io/badge/Prometheus-E6442E?style=for-the-badge&logo=prometheus&logoColor=white" alt="Prometheus" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white" alt="Grafana" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Loki-0F172A?style=for-the-badge&logo=loki&logoColor=white" alt="Loki" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Mimir-0F172A?style=for-the-badge&logo=prometheus&logoColor=white" alt="Mimir" class="h-10 rounded-md" />
+
+                <img src="https://img.shields.io/badge/Observability-6B7280?style=for-the-badge" alt="Observability" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Monitoring-6B7280?style=for-the-badge" alt="Monitoring" class="h-10 rounded-md" />
+
+                <img src="https://img.shields.io/badge/SonarQube-4E9BCD?style=for-the-badge&logo=sonarqube&logoColor=white" alt="SonarQube" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Trivy-0F172A?style=for-the-badge&logo=trivy&logoColor=white" alt="Trivy" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/OWASP-EE0000?style=for-the-badge&logo=owasp&logoColor=white" alt="OWASP" class="h-10 rounded-md" />
+
+                <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Shell-BB8F00?style=for-the-badge&logo=gnubash&logoColor=white" alt="Shell Scripting" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Apache-6B8EBF?style=for-the-badge&logo=apache&logoColor=white" alt="Apache" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=black" alt="Apache Tomcat" class="h-10 rounded-md" />
+
+                <img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=jira&logoColor=white" alt="Jira" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Confluence-1056A4?style=for-the-badge&logo=confluence&logoColor=white" alt="Confluence" class="h-10 rounded-md" />
+                <img src="https://img.shields.io/badge/Agile-6B7280?style=for-the-badge" alt="Agile" class="h-10 rounded-md" />
+
+                <img src="https://img.shields.io/badge/Nexus3-2B2B2B?style=for-the-badge" alt="Nexus3" class="h-10 rounded-md" />
+            </div>
+        </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Certificates</h2>
+            <div class="certificates-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+                <!-- Cert 1 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover-glow transition-all">
+                    <div class="flex items-start space-x-4 mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-1">AWS Cloud Practitioner Essentials</h3>
+                            <p class="text-stone-400 text-sm mb-1">Issuer: Amazon Web Services</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://drive.google.com/file/d/1XoJ_hS4Ko0ADZfcBNw6wInnosY5KI-yY/view" target="_blank" rel="noopener noreferrer" class="btn-magic px-4 py-2 rounded-lg text-sm" aria-label="View AWS certificate">View Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover-glow transition-all">
+                    <div class="flex items-start space-x-4 mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-1">Introduction to Kubernetes (LFS158)</h3>
+                            <p class="text-stone-400 text-sm mb-1">Issuer: The Linux Foundation</p>
+                            <p class="text-stone-400 text-sm mb-0">Certificate ID: <strong>LF6740mnbfsk</strong></p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/a9ee9c68-25b6-4752-bf5b-10fcae2eee2e-sanket-arali-2cdce95f-5741-443e-878f-abb4919f943d-certificate.pdf" target="_blank" rel="noopener noreferrer" class="btn-magic px-4 py-2 rounded-lg text-sm" aria-label="View Kubernetes certificate">View Certificate</a>
+                    </div>
+                </div>
+
+                <!-- Cert 4 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover-glow transition-all">
+                    <div class="flex items-start space-x-4 mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-1">Microsoft Certified: Azure Data Fundamentals</h3>
+                            <p class="text-stone-400 text-sm mb-1">Issuer: Microsoft</p>
+                            <p class="text-stone-400 text-sm mb-0">Credential ID: <strong>3045F15F2A0A3047</strong></p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/SanketSArali-1133/3045F15F2A0A3047?sharingId=C768A5523CBE0C90" target="_blank" rel="noopener noreferrer" class="btn-magic px-4 py-2 rounded-lg text-sm" aria-label="View Azure certificate">View Certificate</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Let's Connect</h2>
+            <p class="text-center text-stone-400 mb-8 max-w-lg mx-auto">
+                I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out.
+            </p>
+
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- Responsive Google Map embed -->
+                <div class="map-wrapper rounded-lg overflow-hidden border border-stone-800">
+                    <iframe
+                        title="Rajathadri Apartments map"
+                        src="https://www.google.com/maps?q=12.9556575,77.5223053&z=20&output=embed"
+                        style="border:0; width:100%; height:320px; display:block;"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <!-- map is embedded above; no external link shown per request -->
+
+                <div class="space-y-4">
+                    <address class="not-italic text-center text-stone-400">
+                        Rajathadri Apartments, 1st main 1st cross, Vidhyagiri Layout, Chandra Layout, Bengaluru, Karnataka 560072
+                    </address>
+
+                    <div class="flex justify-center">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Rajathadri+Apartments,+1st+main+1st+cross,+Vidhyagiri+Layout,+BDA+Lay+Out,+Chandra+Layout,+Bengaluru,+Karnataka" target="_blank" rel="noopener noreferrer" class="btn-magic text-sm px-6 py-3 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700 transition inline-block" aria-label="Open address in Google Maps">
+                            Open in Google Maps
                         </a>
-
-                        <a href="assets/Sanath-Resume.pdf"
-                           class="btn secondary"
-                           target="_blank">
-                            Resume
-                        </a>
-
                     </div>
-
-                    <div class="social-links">
-
-                        <a href="https://github.com/Achar2002"
-                           target="_blank">
-                            GitHub
-                        </a>
-
-                        <a href="https://linkedin.com/in/sanath-achari-856a69234"
-                           target="_blank">
-                            LinkedIn
-                        </a>
-
-                        <a href="mailto:sanatacharya23@gmail.com">
-                            Email
-                        </a>
-
-                    </div>
-
                 </div>
-
-
-                <div class="hero-image">
-
-                    <img
-                        src="assets/profile.jpg"
-                        alt="Sanath Achari">
-
-                </div>
-
             </div>
-
-        </section>
-
-
-        <!-- ================= ABOUT ================= -->
-
-        <section id="about" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <p>01</p>
-
-                    <h2>About Me</h2>
-
-                </div>
-
-
-                <div class="about">
-
-                    <div class="about-title">
-
-                        <h3>
-                            Network Engineer → DevOps / Cloud
-                        </h3>
-
-                    </div>
-
-                    <div class="about-text">
-
-                        <p>
-                            AWS Cloud and DevOps Engineer with hands-on
-                            experience working with cloud infrastructure,
-                            CI/CD pipelines, containerization and monitoring.
-                        </p>
-
-                        <p>
-                            My background in networking and Linux
-                            administration gives me a strong foundation
-                            for working with cloud infrastructure and
-                            DevOps environments.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= EXPERIENCE ================= -->
-
-        <section id="experience" class="section light-section">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <p>02</p>
-
-                    <h2>Experience</h2>
-
-                </div>
-
-
-                <div class="experience-list">
-
-                    <!-- Experience 1 -->
-
-                    <div class="experience-item">
-
-                        <div class="experience-date">
-                            Jul 2026 — Sep 2026
-                        </div>
-
-                        <div class="experience-content">
-
-                            <h3>DevOps Intern</h3>
-
-                            <h4>Elevate Labs</h4>
-
-                            <ul>
-
-                                <li>
-                                    Built an end-to-end CI/CD pipeline
-                                    for a Java-based E-Commerce application
-                                    using Jenkins, GitHub and Maven.
-                                </li>
-
-                                <li>
-                                    Integrated Nexus, SonarQube and Trivy
-                                    for artifact management, code quality
-                                    and container security.
-                                </li>
-
-                                <li>
-                                    Containerized the application using
-                                    Docker and deployed it to Amazon EKS
-                                    using Kubernetes.
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Experience 2 -->
-
-                    <div class="experience-item">
-
-                        <div class="experience-date">
-                            Jun 2025 — May 2026
-                        </div>
-
-                        <div class="experience-content">
-
-                            <h3>Junior Network Support Engineer</h3>
-
-                            <h4>MAHE, Bengaluru</h4>
-
-                            <ul>
-
-                                <li>
-                                    Monitored and maintained LAN/WAN
-                                    infrastructure, routers, switches,
-                                    VLANs, DNS, DHCP and subnetting.
-                                </li>
-
-                                <li>
-                                    Performed Linux administration including
-                                    user management, file permissions and
-                                    service monitoring.
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= SKILLS ================= -->
-
-        <section id="skills" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <p>03</p>
-
-                    <h2>Technical Skills</h2>
-
-                </div>
-
-
-                <div class="skills-grid">
-
-                    <div class="skill-card">
-
-                        <h3>AWS</h3>
-
-                        <p>
-                            EC2 · VPC · EKS · IAM · S3
-                        </p>
-
-                    </div>
-
-
-                    <div class="skill-card">
-
-                        <h3>CI/CD</h3>
-
-                        <p>
-                            Jenkins · Maven · GitHub
-                        </p>
-
-                    </div>
-
-
-                    <div class="skill-card">
-
-                        <h3>Containers</h3>
-
-                        <p>
-                            Docker · Kubernetes · Helm
-                        </p>
-
-                    </div>
-
-
-                    <div class="skill-card">
-
-                        <h3>Infrastructure</h3>
-
-                        <p>
-                            Terraform
-                        </p>
-
-                    </div>
-
-
-                    <div class="skill-card">
-
-                        <h3>Security & Quality</h3>
-
-                        <p>
-                            Trivy · SonarQube · Nexus
-                        </p>
-
-                    </div>
-
-
-                    <div class="skill-card">
-
-                        <h3>Monitoring</h3>
-
-                        <p>
-                            Prometheus · Grafana · Loki
-                        </p>
-
-                    </div>
-
-
-                    <div class="skill-card">
-
-                        <h3>Operating Systems</h3>
-
-                        <p>
-                            Linux · Windows
-                        </p>
-
-                    </div>
-
-
-                    <div class="skill-card">
-
-                        <h3>Networking</h3>
-
-                        <p>
-                            LAN · WAN · VLAN · DNS · DHCP
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= PROJECTS ================= -->
-
-        <section id="projects" class="section light-section">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <p>04</p>
-
-                    <h2>Projects</h2>
-
-                </div>
-
-
-                <div class="projects-grid">
-
-
-                    <!-- Project 1 -->
-
-                    <div class="project-card">
-
-                        <span class="project-number">
-                            01
-                        </span>
-
-                        <h3>
-                            Java E-Commerce Deployment
-                        </h3>
-
-                        <p>
-                            End-to-end DevOps deployment using Jenkins,
-                            Maven, Nexus, SonarQube, Trivy, Docker,
-                            Kubernetes and AWS EKS.
-                        </p>
-
-                        <div class="tags">
-
-                            <span>AWS</span>
-                            <span>Jenkins</span>
-                            <span>Docker</span>
-                            <span>Kubernetes</span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Project 2 -->
-
-                    <div class="project-card">
-
-                        <span class="project-number">
-                            02
-                        </span>
-
-                        <h3>
-                            Multi-Tier VPC Architecture
-                        </h3>
-
-                        <p>
-                            Designed two isolated AWS VPCs with public
-                            and private subnets and configured VPC
-                            peering for cross-VPC connectivity.
-                        </p>
-
-                        <div class="tags">
-
-                            <span>AWS</span>
-                            <span>VPC</span>
-                            <span>EC2</span>
-                            <span>Networking</span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Project 3 -->
-
-                    <div class="project-card">
-
-                        <span class="project-number">
-                            03
-                        </span>
-
-                        <h3>
-                            Docker Python Web Application
-                        </h3>
-
-                        <p>
-                            Containerized a Python Flask application
-                            using Docker and managed its deployment
-                            lifecycle from GitHub to a running container.
-                        </p>
-
-                        <div class="tags">
-
-                            <span>Python</span>
-                            <span>Docker</span>
-                            <span>GitHub</span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Project 4 -->
-
-                    <div class="project-card">
-
-                        <span class="project-number">
-                            04
-                        </span>
-
-                        <h3>
-                            Monitoring & Observability
-                        </h3>
-
-                        <p>
-                            Implemented application and infrastructure
-                            monitoring using Prometheus and Grafana.
-                        </p>
-
-                        <div class="tags">
-
-                            <span>Prometheus</span>
-                            <span>Grafana</span>
-                            <span>AWS</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= EDUCATION ================= -->
-
-        <section id="education" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <p>05</p>
-
-                    <h2>Education & Certifications</h2>
-
-                </div>
-
-
-                <div class="education-grid">
-
-
-                    <div class="education-card">
-
-                        <h3>
-                            BE — Electronics & Communication Engineering
-                        </h3>
-
-                        <p>
-                            Visvesvaraya Technological University
-                        </p>
-
-                        <p>
-                            SDM Institute of Technology, Ujire
-                        </p>
-
-                        <span>
-                            2020 — 2024 · CGPA 7.1
-                        </span>
-
-                    </div>
-
-
-                    <div class="education-card">
-
-                        <h3>
-                            Certifications
-                        </h3>
-
-                        <ul>
-
-                            <li>
-                                AWS Cloud Practitioner Essentials
-                            </li>
-
-                            <li>
-                                Introduction to Kubernetes — LFS158
-                            </li>
-
-                            <li>
-                                Introduction to Linux — LFS101
-                            </li>
-
-                            <li>
-                                CISCO Certified Network Security
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= CONTACT ================= -->
-
-        <section id="contact" class="contact">
-
-            <div class="container">
-
-                <p class="small-text">
-                    HAVE A PROJECT OR OPPORTUNITY?
-                </p>
-
-                <h2>
-                    Let's Connect.
-                </h2>
-
-                <p>
-                    I'm interested in cloud, DevOps and
-                    infrastructure engineering opportunities.
-                </p>
-
-                <a
-                    href="mailto:sanatacharya23@gmail.com"
-                    class="btn primary">
-                    Get In Touch
-                </a>
-
-
-                <div class="contact-details">
-
-                    <span>
-                        Bengaluru, India
-                    </span>
-
-                    <span>
-                        sanatacharya23@gmail.com
-                    </span>
-
-                </div>
-
-            </div>
-
         </section>
 
     </main>
 
+    <!-- Footer -->
+   <!-- Footer -->
+<!-- Footer -->
+    <!-- Footer -->
+<footer id="footer" class="relative py-8 mt-12 text-center text-sm border-t border-stone-800 bg-gradient-to-b from-stone-900/50 to-stone-900">
+    <div class="container mx-auto px-4">
+        <!-- Footer social icons removed as requested; contact icons will be added inside the Contact section if desired -->
+    <!-- Copyright text removed as requested -->
+    </div>
+</footer>
 
-    <!-- ================= FOOTER ================= -->
+<!-- Bottom-fixed contact bar (visible before scrolling) -->
+<div id="bottom-contacts" role="region" aria-label="Quick contacts" title="Quick contacts">
+    <a href="https://github.com/Sanketarali" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="contact-icon">
+        <i class="fab fa-github" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/sanketarali/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="contact-icon">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+    </a>
+    <a href="https://x.com/SanketArali" target="_blank" rel="noopener noreferrer" aria-label="X" class="contact-icon">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+    </a>
+    <a href="https://instagram.com/sanket_arali" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="contact-icon">
+        <i class="fab fa-instagram" aria-hidden="true"></i>
+    </a>
+    <a href="#" id="bottom-mail-btn" aria-label="Send email" class="contact-icon">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+    </a>
+</div>
 
-    <footer>
 
-        <div class="container footer-container">
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme initialization
+            const root = document.documentElement;
+            const storedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            function applyTheme(theme) {
+                root.setAttribute('data-theme', theme);
+                const icon = document.getElementById('theme-icon');
+                if (icon) icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+            const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+            applyTheme(initialTheme);
 
-            <p>
-                © 2026 Sanath Achari
-            </p>
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    const current = document.documentElement.getAttribute('data-theme') || 'light';
+                    const next = current === 'dark' ? 'light' : 'dark';
+                    applyTheme(next);
+                    localStorage.setItem('theme', next);
+                });
+            }
+            const btn = document.getElementById('mobile-menu-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileClose = document.getElementById('mobile-nav-close');
+            if (btn && mobileNav) {
+                const openMenu = () => {
+                    mobileNav.classList.remove('-translate-y-full');
+                    mobileNav.classList.add('translate-y-0');
+                    btn.setAttribute('aria-expanded', 'true');
+                };
+                const closeMenu = () => {
+                    mobileNav.classList.add('-translate-y-full');
+                    mobileNav.classList.remove('translate-y-0');
+                    btn.setAttribute('aria-expanded', 'false');
+                };
 
-            <p>
-                AWS Cloud & DevOps Engineer
-            </p>
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+                    if (isOpen) closeMenu(); else openMenu();
+                });
 
-        </div>
+                if (mobileClose) {
+                    mobileClose.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        closeMenu();
+                    });
+                }
 
-    </footer>
+                // Close mobile nav when clicking outside (only when open)
+                document.addEventListener('click', (e) => {
+                    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+                    if (!isOpen) return;
+                    if (!mobileNav.contains(e.target) && !btn.contains(e.target)) {
+                        closeMenu();
+                    }
+                });
+                // Prevent clicks inside nav from closing
+                mobileNav.addEventListener('click', (e) => e.stopPropagation());
 
+                // Close the mobile menu when any nav link is clicked (so it navigates and collapses)
+                const mobileLinks = mobileNav.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        // small delay to allow anchor navigation on some browsers
+                        setTimeout(() => {
+                            mobileNav.classList.add('-translate-y-full');
+                            mobileNav.classList.remove('translate-y-0');
+                            btn.setAttribute('aria-expanded', 'false');
+                        }, 50);
+                    });
+                });
+            }
+
+            // Parallax effect guard (only when image exists)
+            const cards = document.querySelectorAll('.projects-grid .card');
+            cards.forEach(card => {
+                const img = card.querySelector('.parallax-container img');
+                if (!img) return; // skip if no image
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((centerY - y) / centerY) * 5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+                    const imgTranslateX = ((x - centerX) / centerX) * 10;
+                    const imgTranslateY = ((y - centerY) / centerY) * 10;
+                    img.style.transform = `translate(${imgTranslateX}px, ${imgTranslateY}px) scale(1.05)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+                    img.style.transform = `translate(0px, 0px) scale(1)`;
+                });
+            });
+
+            // Adjust scroll-margin-top for anchored sections so headings are not hidden by the sticky header
+            try {
+                const headerEl = document.querySelector('header');
+                const headerHeight = headerEl ? Math.ceil(headerEl.getBoundingClientRect().height) : 72;
+                document.querySelectorAll('section[id]').forEach(sec => {
+                    sec.style.scrollMarginTop = (headerHeight + 8) + 'px'; // small extra gap
+                });
+            } catch (e) {
+                // ignore
+            }
+
+            // Open Gmail compose (with mailto fallback)
+            function openGmailCompose(email, subject = '', body = '') {
+                try {
+                    const params = new URLSearchParams();
+                    if (subject) params.set('subject', subject);
+                    if (body) params.set('body', body);
+                    // Gmail compose URL with prefilled to, subject, body
+                    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=${encodeURIComponent(email)}&${params.toString()}`;
+                    const win = window.open(gmailUrl, '_blank');
+                    if (!win) {
+                        // popup blocked or failed - fallback to mailto
+                        window.location.href = `mailto:${email}?${params.toString()}`;
+                    }
+                } catch (e) {
+                    // On any error, fallback to mailto
+                    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                }
+            }
+
+            // Resume URL configuration
+            const RESUME_URL = 'https://drive.google.com/file/d/1bCV99UIKK4EzfxPuKj-ApJr1HFuk9row/view?usp=sharing';
+
+            // Hook up Resume download buttons (desktop and mobile)
+            const resumeDesktop = document.getElementById('download-resume-desktop');
+            const resumeMobile = document.getElementById('download-resume-mobile');
+            function openResume() {
+                if (!RESUME_URL || RESUME_URL.includes('YOUR_FILE_ID_HERE')) {
+                    // If user didn't configure URL, fallback to opening a Google Drive viewer in a new tab (or do nothing)
+                    const viewer = 'https://drive.google.com/drive/my-drive';
+                    window.open(viewer, '_blank', 'noopener');
+                    return;
+                }
+                window.open(RESUME_URL, '_blank', 'noopener,noreferrer');
+            }
+            if (resumeDesktop) resumeDesktop.addEventListener('click', (e) => { e.preventDefault(); openResume(); });
+            if (resumeMobile) resumeMobile.addEventListener('click', (e) => { e.preventDefault(); openResume(); });
+
+            // Hook up footer mail button to open Gmail
+            const footerMail = document.getElementById('footer-mail-btn');
+            if (footerMail) {
+                footerMail.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openGmailCompose('sanketarali5@gmail.com');
+                });
+            }
+
+            // Hook up bottom contact bar mail button (visible before scrolling)
+            const bottomMail = document.getElementById('bottom-mail-btn');
+            if (bottomMail) {
+                bottomMail.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openGmailCompose('sanketarali5@gmail.com');
+                });
+            }
+        });
+    </script>
+    
 </body>
-
 </html>

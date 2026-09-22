@@ -1,0 +1,585 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #111;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* =========================
+   GLOBAL
+========================= */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.dark-section {
+    background: #111;
+    color: #fff;
+}
+
+.section-heading {
+    max-width: 750px;
+    margin-bottom: 60px;
+}
+
+.section-heading p {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    opacity: 0.65;
+}
+
+.section-heading h2 {
+    font-size: clamp(32px, 5vw, 58px);
+    line-height: 1.1;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(245, 245, 245, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-container {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #777;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.5;
+}
+
+.menu-btn {
+    display: none;
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 75px;
+}
+
+.hero-content {
+    max-width: 950px;
+}
+
+.hero-small-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(70px, 13vw, 150px);
+    line-height: 0.9;
+    letter-spacing: -6px;
+    margin-bottom: 30px;
+}
+
+.hero h2 {
+    font-size: clamp(20px, 3vw, 36px);
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.hero h2 span {
+    opacity: 0.3;
+    margin: 0 8px;
+}
+
+.hero-description {
+    max-width: 700px;
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 25px;
+    font-size: 14px;
+    font-weight: 700;
+    border: 1px solid #111;
+    transition: 0.3s;
+}
+
+.primary-btn {
+    background: #111;
+    color: #fff;
+}
+
+.primary-btn:hover {
+    background: #333;
+}
+
+.secondary-btn:hover {
+    background: #111;
+    color: #fff;
+}
+
+.social-links {
+    display: flex;
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.social-links a {
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #111;
+    padding-bottom: 3px;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-content {
+    max-width: 850px;
+}
+
+.about-content p {
+    font-size: 20px;
+    margin-bottom: 25px;
+    color: #444;
+}
+
+
+/* =========================
+   EXPERIENCE
+========================= */
+
+.experience-card {
+    border-top: 1px solid #555;
+    padding-top: 35px;
+}
+
+.experience-header {
+    margin-bottom: 35px;
+}
+
+.experience-card h3 {
+    font-size: 35px;
+    margin-bottom: 5px;
+}
+
+.experience-card h4 {
+    font-size: 20px;
+    font-weight: 400;
+    opacity: 0.6;
+}
+
+.experience-card ul {
+    max-width: 900px;
+}
+
+.experience-card li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 18px;
+    color: #ccc;
+}
+
+.experience-card li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.skill-card {
+    border: 1px solid #ddd;
+    padding: 30px;
+    min-height: 170px;
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: #111;
+}
+
+.skill-card h3 {
+    margin-bottom: 20px;
+    font-size: 21px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-list span,
+.project-tech span {
+    padding: 7px 12px;
+    background: #eee;
+    font-size: 13px;
+    border-radius: 2px;
+}
+
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.project-card {
+    border: 1px solid #333;
+    padding: 35px;
+    min-height: 350px;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    border-color: #fff;
+    transform: translateY(-5px);
+}
+
+.project-number {
+    font-size: 13px;
+    opacity: 0.5;
+    margin-bottom: 50px;
+}
+
+.project-card h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.project-card p {
+    color: #bbb;
+    margin-bottom: 30px;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-tech span {
+    background: #222;
+    border: 1px solid #444;
+    color: #ddd;
+}
+
+
+/* =========================
+   CERTIFICATIONS
+========================= */
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.cert-card {
+    border: 1px solid #ddd;
+    padding: 30px;
+    min-height: 230px;
+}
+
+.cert-number {
+    font-size: 13px;
+    opacity: 0.5;
+}
+
+.cert-card h3 {
+    font-size: 23px;
+    margin: 45px 0 15px;
+}
+
+.cert-card p {
+    color: #666;
+}
+
+
+/* =========================
+   EDUCATION
+========================= */
+
+.education-list {
+    border-top: 1px solid #444;
+}
+
+.education-card {
+    padding: 35px 0;
+    border-bottom: 1px solid #444;
+}
+
+.education-year {
+    font-size: 13px;
+    opacity: 0.5;
+}
+
+.education-card h3 {
+    font-size: 32px;
+    margin-top: 10px;
+}
+
+.education-card h4 {
+    font-size: 19px;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.education-card p {
+    margin-top: 10px;
+    color: #aaa;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section {
+    text-align: center;
+}
+
+.contact-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.contact-small {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.contact-content h2 {
+    font-size: clamp(50px, 8vw, 100px);
+    line-height: 1;
+    margin-bottom: 25px;
+}
+
+.contact-content > p {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+.email-link {
+    font-size: clamp(20px, 4vw, 35px);
+    font-weight: 700;
+    border-bottom: 2px solid #111;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.contact-links a {
+    font-weight: 600;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #111;
+    color: #aaa;
+    padding: 25px 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-container a {
+    color: #fff;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: #f5f5f5;
+        flex-direction: column;
+        padding: 25px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .section {
+        padding: 75px 0;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .hero h1 {
+        font-size: 65px;
+    }
+
+    .hero h2 {
+        font-size: 20px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .about-content p {
+        font-size: 17px;
+    }
+
+    .experience-card h3 {
+        font-size: 27px;
+    }
+
+    .project-card {
+        padding: 25px;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+}
